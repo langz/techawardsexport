@@ -1,0 +1,22 @@
+{
+  "name": "techawards_excel",
+  "version": "1.0.0",
+  "description": "export of techawards-data to excel",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/langz/techawardsexport.git"
+  },
+  "author": "langz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/langz/techawardsexport/issues"
+  },
+  "homepage": "https://github.com/langz/techawardsexport#readme",
+  "dependencies": {
+    "json2csv": "^3.7.3"
+  }
+}
