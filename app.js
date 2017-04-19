@@ -4,7 +4,7 @@ var fs = require('fs');
 readJSON();
 
 function start(techawardsData) {
-    var fields = ['category', 'nominee', 'votes', 'description'];
+    var fields = ['category', 'nominee', 'nominations', 'votes', 'description'];
     var document = [];
     for (var category in techawardsData.nominees) {
         for (var nominee in techawardsData.nominees[category]) {
@@ -15,8 +15,9 @@ function start(techawardsData) {
             var data = {
                 "category": category,
                 "nominee": getNominationName(nominee, techawardsData, category),
+                "nominations": Object.keys(techawardsData.nominees[category][nominee].nominations).length,
                 "votes": getVotes(nominee, category, techawardsData),
-                "description": descriptions.join(" ** "),
+                "description": descriptions.join(" 2. "),
             };
             document.push(data);
         }
@@ -37,7 +38,12 @@ function getNominationName(nominee, techawardsData, category) {
 }
 
 function getVotes(nominee, category, techawardsData) {
-    return Object.keys(techawardsData.results[category].nominees[nominee].votes).length;
+    // console.log(Object.keys(techawardsData.votes).length);
+    if (techawardsData.results[category]) {
+        return Object.keys(techawardsData.results[category].nominees[nominee].votes).length;
+    } else {
+        return 0;
+    }
 }
 
 function generateCSV(data, fields) {
